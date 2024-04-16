@@ -1,0 +1,12 @@
+{
+  "name": "pet-api",
+  "version": "1.0.0",
+  "description": "api rest node para o projeto pet com sequelize",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
