@@ -9,3 +9,21 @@ Este projeto utiliza as seguintes ferramentas
 - `sequelize-cli 6.6.2`
 - `prettier 3.2.5`
 - `Docker 24.0.5`
+
+Requisitos para o ambiente de desenvolvimento
+
+- `Composer`
+- `npm`
+- `Git`
+- `Docker Engine (ou Docker Desktop)`
+- `Prettier (npm)`
+
+Clone o repositório através do comando
+
+- `git clone https://github.com/martinezrafael/pet-api.git`
+
+Instalar dependências
+
+- Execute o comando `npm install`
+
+Instalar o Postgres via Docker Compose
