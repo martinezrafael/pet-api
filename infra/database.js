@@ -3,7 +3,7 @@ const { Sequelize } = require("sequelize");
 console.log(process.env.DATABASE);
 
 const sequelize = new Sequelize(
-  process.env.POSTGRES_DATABASE,
+  process.env.POSTGRES_DB,
   process.env.POSTGRES_USER,
   process.env.POSTGRES_PASSWORD,
   {
