@@ -16,22 +16,18 @@ async function testConnection() {
     await sequelize.authenticate();
     console.log("Conexão estabelecida com sucesso.");
 
-    // Consulta SQL para obter todas as tabelas no banco de dados
+    // Consulta SQL para selecionar todos os registros da tabela veterinarios
     const query = `
-      SELECT table_name
-      FROM information_schema.tables
-      WHERE table_schema = 'public'
-      AND table_type = 'BASE TABLE';
+      SELECT *
+      FROM veterinarios;
     `;
 
     // Executa a consulta SQL diretamente no banco de dados
     const [results, metadata] = await sequelize.query(query);
 
-    // Exibe o nome das tabelas
-    console.log("Tabelas no banco de dados:");
-    results.forEach((row) => {
-      console.log(row.table_name);
-    });
+    // Exibe os resultados
+    console.log("Registros na tabela veterinarios:");
+    console.log(results);
   } catch (error) {
     console.error("Erro ao conectar ao banco de dados:", error);
   } finally {
