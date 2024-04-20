@@ -19,14 +19,14 @@ async function testConnection() {
     // Consulta SQL para selecionar todos os registros da tabela veterinarios
     const query = `
       SELECT *
-      FROM veterinarios;
+      FROM tutores;
     `;
 
     // Executa a consulta SQL diretamente no banco de dados
     const [results, metadata] = await sequelize.query(query);
 
     // Exibe os resultados
-    console.log("Registros na tabela veterinarios:");
+    console.log("Registros na tabela tutores:");
     console.log(results);
   } catch (error) {
     console.error("Erro ao conectar ao banco de dados:", error);
