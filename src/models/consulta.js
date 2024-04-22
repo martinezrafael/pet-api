@@ -9,8 +9,18 @@ module.exports = (sequelize, DataTypes) => {
       consulta_nome: DataTypes.STRING,
       consulta_descricao: DataTypes.STRING,
       consulta_parecer: DataTypes.STRING,
-      consulta_data: DataTypes.DATE,
-      consulta_horario: DataTypes.DATE,
+      consulta_data: {
+        type: DataTypes.DATE,
+        get() {
+          return new Date(this.getDataValue("consulta_data") + "+0000");
+        },
+      },
+      consulta_horario: {
+        type: DataTypes.TIME,
+        get() {
+          return new Date(this.getDataValue("consulta_horario") + "+0000");
+        },
+      },
       consulta_status: DataTypes.BOOLEAN,
       consulta_preco: DataTypes.FLOAT,
     },

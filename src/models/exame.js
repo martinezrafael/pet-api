@@ -9,8 +9,18 @@ module.exports = (sequelize, DataTypes) => {
       exame_nome: DataTypes.STRING,
       exame_descricao: DataTypes.STRING,
       exame_resultado: DataTypes.STRING,
-      exame_data: DataTypes.DATE,
-      exame_horario: DataTypes.DATE,
+      exame_data: {
+        type: DataTypes.DATE,
+        get() {
+          return new Date(this.getDataValue("exame_data") + "+0000");
+        },
+      },
+      exame_horario: {
+        type: DataTypes.TIME,
+        get() {
+          return new Date(this.getDataValue("exame_horario") + "+0000");
+        },
+      },
       exame_status: DataTypes.BOOLEAN,
       exame_preco: DataTypes.FLOAT,
     },

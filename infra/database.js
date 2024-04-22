@@ -11,23 +11,14 @@ const sequelize = new Sequelize(
   },
 );
 
-async function testConnection() {
+async function dropAllTables() {
   try {
     await sequelize.authenticate();
     console.log("Conexão estabelecida com sucesso.");
 
-    // Consulta SQL para selecionar todos os registros da tabela veterinarios
-    const query = `
-      SELECT *
-      FROM tutores;
-    `;
-
-    // Executa a consulta SQL diretamente no banco de dados
-    const [results, metadata] = await sequelize.query(query);
-
-    // Exibe os resultados
-    console.log("Registros na tabela tutores:");
-    console.log(results);
+    // Executar consulta SQL
+    const [results, metadata] = await sequelize.query("SELECT * FROM tutores");
+    console.log("Resultados da consulta:", results);
   } catch (error) {
     console.error("Erro ao conectar ao banco de dados:", error);
   } finally {
@@ -35,4 +26,4 @@ async function testConnection() {
   }
 }
 
-testConnection();
+dropAllTables();

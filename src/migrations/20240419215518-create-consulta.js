@@ -22,7 +22,7 @@ module.exports = {
         type: Sequelize.DATE,
       },
       consulta_horario: {
-        type: Sequelize.DATE,
+        type: Sequelize.TIME,
       },
       consulta_status: {
         type: Sequelize.BOOLEAN,
