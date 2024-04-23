@@ -1,14 +1,11 @@
-const database = require("../models");
+const Controller = require("./Controller.js");
+const VeterinarioServices = require("../services/VeterinarioServices.js");
 
-class VeterinarioController {
-  static async GetVeterinarios(req, res) {
-    try {
-      const VeterinariosAll = await database.Veterinario.findAll();
-      res.status(200).json(VeterinariosAll);
-    } catch (error) {
-      console.error("Erro ao obter veterinários:", error);
-      res.status(500).json({ error: "Erro ao obter veterinários" });
-    }
+const veterinarioServices = new VeterinarioServices();
+
+class VeterinarioController extends Controller {
+  constructor() {
+    super(veterinarioServices);
   }
 }
 
