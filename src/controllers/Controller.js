@@ -66,6 +66,21 @@ class Controller {
       });
     }
   }
+
+  async deleteById(req, res) {
+    const { id } = req.params;
+    try {
+      const isDeleted = await this.servicesEntitie.deleteRegister(Number(id));
+      if (!isDeleted) {
+        return res.status(400).json({ message: `Não foi possível deletar` });
+      }
+      return res.status(200).json({ message: `Deletado com sucesso!` });
+    } catch (error) {
+      console.error({
+        message: `Ops, algo de errado aconteceu ${error.message}`,
+      });
+    }
+  }
 }
 
 module.exports = Controller;

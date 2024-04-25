@@ -21,4 +21,8 @@ router.put("/atualiza-veterinario/:id", (req, res) =>
   veterinarioController.updateById(req, res),
 );
 
+router.delete("/deleta-veterinario/:id", (req, res) => {
+  veterinarioController.deleteById(req, res);
+});
+
 module.exports = router;
