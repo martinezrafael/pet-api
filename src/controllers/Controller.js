@@ -28,6 +28,24 @@ class Controller {
     }
   }
 
+  //busca um por pk
+  async findOneByPk(req, res) {
+    const { id } = req.params;
+    try {
+      const registerByPk = await this.servicesEntitie.getOneRegisterByPk(
+        Number(id),
+      );
+      if (!registerByPk) {
+        return res.status(400).json({ message: `Não conseguimos localizar` });
+      }
+      return res.status(200).json(registerByPk);
+    } catch (error) {
+      console.error({
+        message: `Ops, algo de errado aconteceu ${error.message}`,
+      });
+    }
+  }
+
   //atualiza um por id
   async updateById(req, res) {
     const { id } = req.params;

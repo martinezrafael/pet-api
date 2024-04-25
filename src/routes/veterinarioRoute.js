@@ -13,6 +13,10 @@ router.get("/todos-os-veterinarios", (req, res) =>
   veterinarioController.getAll(req, res),
 );
 
+router.get("/veterinario/:id", (req, res) =>
+  veterinarioController.findOneByPk(req, res),
+);
+
 router.put("/atualiza-veterinario/:id", (req, res) =>
   veterinarioController.updateById(req, res),
 );
