@@ -5,6 +5,11 @@ class Services {
   constructor(modelName) {
     this.model = modelName;
   }
+
+  async createNewRegister(data) {
+    return dataSource[this.model].create(data);
+  }
+
   async getAllRegisters() {
     return dataSource[this.model].findAll();
   }

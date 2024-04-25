@@ -5,6 +5,10 @@ const veterinarioController = new VeterinarioController();
 
 const router = Router();
 
+router.post("/novo-veterinario", (req, res) =>
+  veterinarioController.createNew(req, res),
+);
+
 router.get("/todos-os-veterinarios", (req, res) =>
   veterinarioController.getAll(req, res),
 );

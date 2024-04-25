@@ -3,6 +3,20 @@ class Controller {
     this.servicesEntitie = servicesEntitie;
   }
 
+  //cria um novo
+  async createNew(req, res) {
+    const data = req.body;
+    try {
+      const newRegister = await this.servicesEntitie.createNewRegister(data);
+      return res.status(200).json(newRegister);
+    } catch (error) {
+      console.error({
+        message: `Ops, algo de errado aconteceu ${error.message}`,
+      });
+    }
+  }
+
+  //busca todos
   async getAll(req, res) {
     try {
       const allRegisters = await this.servicesEntitie.getAllRegisters();
@@ -14,6 +28,7 @@ class Controller {
     }
   }
 
+  //atualiza um por id
   async updateById(req, res) {
     const { id } = req.params;
     const newData = req.body;
