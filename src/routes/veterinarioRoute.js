@@ -5,27 +5,29 @@ const veterinarioController = new VeterinarioController();
 
 const router = Router();
 
-router.post("/novo-veterinario", (req, res) =>
-  veterinarioController.createNew(req, res),
-);
+const versioningPrefix = "/api/v1";
 
-router.get("/todos-os-veterinarios", (req, res) =>
+router.get(`${versioningPrefix}/veterinario/todos`, (req, res) =>
   veterinarioController.getAll(req, res),
 );
 
-router.get("/veterinario/:id", (req, res) =>
+router.post(`${versioningPrefix}/veterinario/cadastrar`, (req, res) =>
+  veterinarioController.createNew(req, res),
+);
+
+router.get(`${versioningPrefix}/veterinario/id/:id`, (req, res) =>
   veterinarioController.findOneByPk(req, res),
 );
 
-router.get("/veterinario/crmv/:crmv", (req, res) =>
+router.get(`${versioningPrefix}/veterinario/crmv/:crmv`, (req, res) =>
   veterinarioController.getByCrmv(req, res),
 );
 
-router.put("/atualiza-veterinario/:id", (req, res) =>
+router.put(`${versioningPrefix}/veterinario/editar/:id`, (req, res) =>
   veterinarioController.updateById(req, res),
 );
 
-router.delete("/deleta-veterinario/:id", (req, res) => {
+router.delete(`${versioningPrefix}/veterinario/excluir/:id`, (req, res) => {
   veterinarioController.deleteById(req, res);
 });
 

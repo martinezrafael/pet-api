@@ -3,7 +3,17 @@ class Controller {
     this.servicesEntitie = servicesEntitie;
   }
 
-  //create
+  async getAll(req, res) {
+    try {
+      const allRegisters = await this.servicesEntitie.getAllRegisters();
+      return res.status(200).json(allRegisters);
+    } catch (error) {
+      console.error({
+        message: `Ops, algo de errado aconteceu ${error.message}`,
+      });
+    }
+  }
+
   async createNew(req, res) {
     const data = req.body;
     try {
@@ -16,7 +26,6 @@ class Controller {
     }
   }
 
-  //read
   async findOneByPk(req, res) {
     const { id } = req.params;
     try {
@@ -27,18 +36,6 @@ class Controller {
         return res.status(400).json({ message: `Não conseguimos localizar` });
       }
       return res.status(200).json(registerByPk);
-    } catch (error) {
-      console.error({
-        message: `Ops, algo de errado aconteceu ${error.message}`,
-      });
-    }
-  }
-
-  //read
-  async getAll(req, res) {
-    try {
-      const allRegisters = await this.servicesEntitie.getAllRegisters();
-      return res.status(200).json(allRegisters);
     } catch (error) {
       console.error({
         message: `Ops, algo de errado aconteceu ${error.message}`,
@@ -61,7 +58,6 @@ class Controller {
     }
   }
 
-  //update
   async updateById(req, res) {
     const { id } = req.params;
     const newData = req.body;
@@ -82,7 +78,6 @@ class Controller {
     }
   }
 
-  //delete
   async deleteById(req, res) {
     const { id } = req.params;
     try {
