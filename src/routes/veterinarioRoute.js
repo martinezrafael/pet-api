@@ -5,7 +5,7 @@ const veterinarioController = new VeterinarioController();
 
 const router = Router();
 
-const versioningPrefix = "/api/v1";
+const versioningPrefix = process.env.VERSIONING_PREFIX;
 
 router.get(`${versioningPrefix}/veterinario/todos`, (req, res) =>
   veterinarioController.getAll(req, res),
