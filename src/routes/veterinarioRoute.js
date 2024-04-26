@@ -17,6 +17,10 @@ router.get("/veterinario/:id", (req, res) =>
   veterinarioController.findOneByPk(req, res),
 );
 
+router.get("/veterinario/crmv/:crmv", (req, res) =>
+  veterinarioController.getByCrmv(req, res),
+);
+
 router.put("/atualiza-veterinario/:id", (req, res) =>
   veterinarioController.updateById(req, res),
 );

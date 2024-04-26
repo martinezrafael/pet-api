@@ -14,12 +14,22 @@ class Services {
     return dataSource[this.model].findAll();
   }
 
+  //busca pelo crmv
+  async getByCrmv(crmvNumber) {
+    const resultsByCrmv = await dataSource[this.model].findAll({
+      where: {
+        veterinario_crmv: crmvNumber,
+      },
+    });
+    return resultsByCrmv;
+  }
+
   async getOneRegisterByPk(id) {
     return dataSource[this.model].findByPk(id);
   }
 
   async updateRegisterById(newData, id) {
-    const updatedRegistersList = dataSource[this.model].update(newData, {
+    const updatedRegistersList = await dataSource[this.model].update(newData, {
       where: { id: id },
     });
     if (updatedRegistersList[0] === 0) {

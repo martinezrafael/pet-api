@@ -3,7 +3,7 @@ class Controller {
     this.servicesEntitie = servicesEntitie;
   }
 
-  //cria um novo
+  //create
   async createNew(req, res) {
     const data = req.body;
     try {
@@ -16,19 +16,7 @@ class Controller {
     }
   }
 
-  //busca todos
-  async getAll(req, res) {
-    try {
-      const allRegisters = await this.servicesEntitie.getAllRegisters();
-      return res.status(200).json(allRegisters);
-    } catch (error) {
-      console.error({
-        message: `Ops, algo de errado aconteceu ${error.message}`,
-      });
-    }
-  }
-
-  //busca um por pk
+  //read
   async findOneByPk(req, res) {
     const { id } = req.params;
     try {
@@ -46,7 +34,34 @@ class Controller {
     }
   }
 
-  //atualiza um por id
+  //read
+  async getAll(req, res) {
+    try {
+      const allRegisters = await this.servicesEntitie.getAllRegisters();
+      return res.status(200).json(allRegisters);
+    } catch (error) {
+      console.error({
+        message: `Ops, algo de errado aconteceu ${error.message}`,
+      });
+    }
+  }
+
+  async getByCrmv(req, res) {
+    const { crmv } = req.params;
+    try {
+      const resultsByCrmv = await this.servicesEntitie.getByCrmv(crmv);
+      return res.status(200).json(resultsByCrmv);
+    } catch (error) {
+      console.error({
+        message: `Ops, algo de errado aconteceu ${error.message}`,
+      });
+      return res
+        .status(500)
+        .json({ error: "Ocorreu um erro ao processar a solicitação." });
+    }
+  }
+
+  //update
   async updateById(req, res) {
     const { id } = req.params;
     const newData = req.body;
@@ -67,6 +82,7 @@ class Controller {
     }
   }
 
+  //delete
   async deleteById(req, res) {
     const { id } = req.params;
     try {
