@@ -6,6 +6,11 @@ class Controller {
   async getAll(req, res) {
     try {
       const allRegisters = await this.servicesEntitie.getAllRegisters();
+      if (allRegisters.length <= 0) {
+        return res
+          .status(400)
+          .json({ message: "Não há resultados para serem exibidos." });
+      }
       return res.status(200).json(allRegisters);
     } catch (error) {
       console.error({
@@ -18,7 +23,7 @@ class Controller {
     const data = req.body;
     try {
       const newRegister = await this.servicesEntitie.createNewRegister(data);
-      return res.status(200).json(newRegister);
+      return res.status(200).json({ message: "Cadastrado com Sucesso" });
     } catch (error) {
       console.error({
         message: `Ops, algo de errado aconteceu ${error.message}`,

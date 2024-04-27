@@ -24,6 +24,19 @@ class Services {
     return resultsByCrmv;
   }
 
+  //busca por regiao
+  //https://github.com/raniellyferreira/awesomeapi-cep
+  //https://cep.awesomeapi.com.br/json/11770142
+  async getByLocation(lat, lon) {
+    const resultsByLocation = await dataSource[this.model].findAll({
+      where: {
+        latitude: lat,
+        longitude: lon,
+      },
+    });
+    return resultsByLocation;
+  }
+
   async getOneRegisterByPk(id) {
     return dataSource[this.model].findByPk(id);
   }
