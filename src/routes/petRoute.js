@@ -11,4 +11,20 @@ router.get(`${versioningPrefix}/pet/todos`, (req, res) =>
   petController.getAll(req, res),
 );
 
+router.post(`${versioningPrefix}/pet/cadastrar`, (req, res) =>
+  petController.createNew(req, res),
+);
+
+router.get(`${versioningPrefix}/pet/id/:id`, (req, res) =>
+  petController.findOneByPk(req, res),
+);
+
+router.put(`${versioningPrefix}/pet/editar/:id`, (req, res) =>
+  petController.updateById(req, res),
+);
+
+router.delete(`${versioningPrefix}/pet/excluir/:id`, (req, res) =>
+  petController.deleteById(req, res),
+);
+
 module.exports = router;
