@@ -1,5 +1,5 @@
 const Controller = require("./Controller.js");
-const VeterinarioServices = require("../services/VeterinarioServices.js");
+const VeterinarioServices = require("../services/VeterinarioService.js");
 
 const veterinarioServices = new VeterinarioServices();
 
