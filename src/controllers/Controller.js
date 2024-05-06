@@ -5,71 +5,40 @@ class Controller {
 
   async getAll(req, res) {
     try {
-      const allRegisters = await this.servicesEntitie.getAllRegisters();
-      if (allRegisters.length <= 0) {
-        return res
-          .status(400)
-          .json({ message: "Não há resultados para serem exibidos." });
-      }
-      return res.status(200).json(allRegisters);
+      const all = await this.servicesEntitie.getAll();
+      return res.status(200).json(all);
     } catch (error) {
-      console.error({
-        message: `Ops, algo de errado aconteceu ${error.message}`,
-      });
+      return res.status(500).json({ message: error.message });
     }
   }
 
-  async createNew(req, res) {
-    const data = req.body;
+  async create(req, res) {
+    const payload = req.body;
     try {
-      const newRegister = await this.servicesEntitie.createNewRegister(data);
-      return res.status(200).json({ message: "Cadastrado com Sucesso" });
+      const created = await this.servicesEntitie.create(payload);
+      return res.status(201).json(created);
     } catch (error) {
-      console.error({
-        message: `Ops, algo de errado aconteceu ${error.message}`,
-      });
+      return res.status(500).json({ message: error.message });
     }
   }
 
-  async findOneByPk(req, res) {
+  async getById(req, res) {
     const { id } = req.params;
     try {
-      const registerByPk = await this.servicesEntitie.getOneRegisterByPk(
-        Number(id),
-      );
-      if (!registerByPk) {
-        return res.status(400).json({ message: `Não conseguimos localizar` });
-      }
-      return res.status(200).json(registerByPk);
+      const response = await this.servicesEntitie.getById(Number(id));
+      return res.status(200).json(response);
     } catch (error) {
-      console.error({
-        message: `Ops, algo de errado aconteceu ${error.message}`,
-      });
-    }
-  }
-
-  async getByCrmv(req, res) {
-    const { crmv } = req.params;
-    try {
-      const resultsByCrmv = await this.servicesEntitie.getByCrmv(crmv);
-      return res.status(200).json(resultsByCrmv);
-    } catch (error) {
-      console.error({
-        message: `Ops, algo de errado aconteceu ${error.message}`,
-      });
-      return res
-        .status(500)
-        .json({ error: "Ocorreu um erro ao processar a solicitação." });
+      return res.status(500).json({ message: error.message });
     }
   }
 
   async updateById(req, res) {
+    const payload = req.body;
     const { id } = req.params;
-    const newData = req.body;
 
     try {
-      const isUpdated = await this.servicesEntitie.updateRegisterById(
-        newData,
+      const isUpdated = await this.servicesEntitie.updateById(
+        payload,
         Number(id),
       );
       if (!isUpdated) {
@@ -86,15 +55,10 @@ class Controller {
   async deleteById(req, res) {
     const { id } = req.params;
     try {
-      const isDeleted = await this.servicesEntitie.deleteRegister(Number(id));
-      if (!isDeleted) {
-        return res.status(400).json({ message: `Não foi possível deletar` });
-      }
-      return res.status(200).json({ message: `Deletado com sucesso!` });
+      const deleted = await this.servicesEntitie.deleteById(Number(id));
+      return res.status(204).json({ message: "Deletado com Sucesso!" });
     } catch (error) {
-      console.error({
-        message: `Ops, algo de errado aconteceu ${error.message}`,
-      });
+      return res.status(500).json({ message: error.message });
     }
   }
 }

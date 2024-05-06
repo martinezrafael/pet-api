@@ -12,11 +12,11 @@ router.get(`${versioningPrefix}/pet/todos`, (req, res) =>
 );
 
 router.post(`${versioningPrefix}/pet/cadastrar`, (req, res) =>
-  petController.createNew(req, res),
+  petController.create(req, res),
 );
 
 router.get(`${versioningPrefix}/pet/id/:id`, (req, res) =>
-  petController.findOneByPk(req, res),
+  petController.getById(req, res),
 );
 
 router.put(`${versioningPrefix}/pet/editar/:id`, (req, res) =>

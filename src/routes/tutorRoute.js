@@ -11,12 +11,12 @@ router.get(`${versioningPrefix}/tutor/todos`, (req, res) =>
   tutorController.getAll(req, res),
 );
 
-router.post(`${versioningPrefix}/tutor/cadastrar`, (rq, res) =>
-  tutorController.createNew(rq, res),
+router.post(`${versioningPrefix}/tutor/cadastrar`, (req, res) =>
+  tutorController.create(req, res),
 );
 
 router.get(`${versioningPrefix}/tutor/id/:id`, (req, res) =>
-  tutorController.findOneByPk(req, res),
+  tutorController.getById(req, res),
 );
 
 router.put(`${versioningPrefix}/tutor/editar/:id`, (req, res) =>

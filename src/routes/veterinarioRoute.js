@@ -12,15 +12,11 @@ router.get(`${versioningPrefix}/veterinario/todos`, (req, res) =>
 );
 
 router.post(`${versioningPrefix}/veterinario/cadastrar`, (req, res) =>
-  veterinarioController.createNew(req, res),
+  veterinarioController.create(req, res),
 );
 
 router.get(`${versioningPrefix}/veterinario/id/:id`, (req, res) =>
-  veterinarioController.findOneByPk(req, res),
-);
-
-router.get(`${versioningPrefix}/veterinario/crmv/:crmv`, (req, res) =>
-  veterinarioController.getByCrmv(req, res),
+  veterinarioController.getById(req, res),
 );
 
 router.put(`${versioningPrefix}/veterinario/editar/:id`, (req, res) =>
