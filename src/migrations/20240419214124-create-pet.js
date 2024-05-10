@@ -21,6 +21,14 @@ module.exports = {
       pet_foto: {
         type: Sequelize.STRING,
       },
+      tutor_id: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: "tutores",
+          key: "id",
+        },
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

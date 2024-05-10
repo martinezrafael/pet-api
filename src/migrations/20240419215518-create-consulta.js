@@ -30,6 +30,22 @@ module.exports = {
       consulta_preco: {
         type: Sequelize.FLOAT,
       },
+      veterinario_id: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: "veterinarios",
+          key: "id",
+        },
+      },
+      pet_id: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: "pets",
+          key: "id",
+        },
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
