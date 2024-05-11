@@ -2,7 +2,17 @@
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Pet extends Model {
-    static associate(models) {}
+    static associate(models) {
+      Pet.hasOne(models.Tutor, {
+        foreignKey: "tutor_id",
+      });
+      Pet.hasMany(models.Consulta, {
+        foreignKey: "consulta_id",
+      });
+      Pet.hasMany(models.Exame, {
+        foreignKey: "exame_id",
+      });
+    }
   }
   Pet.init(
     {

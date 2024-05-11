@@ -2,7 +2,14 @@
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Consulta extends Model {
-    static associate(models) {}
+    static associate(models) {
+      Consulta.hasOne(models.Pet, {
+        foreignKey: "pet_id",
+      });
+      Consulta.hasOne(models.Veterinario, {
+        foreignKey: "veterinario_id",
+      });
+    }
   }
   Consulta.init(
     {
