@@ -5,9 +5,11 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Consulta.belongsTo(models.Pet, {
         foreignKey: "pet_id",
+        targetKey: "id",
       });
       Consulta.belongsTo(models.Veterinario, {
         foreignKey: "veterinario_id",
+        targetKey: "id",
       });
     }
   }

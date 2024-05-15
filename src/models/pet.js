@@ -6,8 +6,12 @@ module.exports = (sequelize, DataTypes) => {
       Pet.belongsTo(models.Tutor, {
         foreignKey: "tutor_id",
       });
-      Pet.hasMany(models.Consulta);
-      Pet.hasMany(models.Exame);
+      Pet.hasMany(models.Consulta, {
+        foreignKey: "pet_id",
+      });
+      Pet.hasMany(models.Exame, {
+        foreignKey: "pet_id",
+      });
     }
   }
   Pet.init(

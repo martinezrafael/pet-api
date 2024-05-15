@@ -7,8 +7,20 @@ module.exports = {
       "veterinario_servicos",
       [
         {
-          veterinario_id: 4,
+          veterinario_id: 1,
+          servico_id: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          veterinario_id: 2,
           servico_id: 2,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          veterinario_id: 3,
+          servico_id: 3,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
