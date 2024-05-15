@@ -1,5 +1,6 @@
 "use strict";
 const { Model } = require("sequelize");
+
 module.exports = (sequelize, DataTypes) => {
   class Veterinario extends Model {
     static associate(models) {
@@ -9,12 +10,15 @@ module.exports = (sequelize, DataTypes) => {
       });
       Veterinario.hasMany(models.Consulta, {
         foreignKey: "veterinario_id",
+        scope: { consulta_status: true },
+        as: "consultasRealizadas",
       });
       Veterinario.hasMany(models.Exame, {
         foreignKey: "veterinario_id",
       });
     }
   }
+
   Veterinario.init(
     {
       veterinario_nome: DataTypes.STRING,
@@ -40,5 +44,6 @@ module.exports = (sequelize, DataTypes) => {
       tableName: "veterinarios",
     },
   );
+
   return Veterinario;
 };
